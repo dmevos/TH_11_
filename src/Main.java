@@ -1,13 +1,19 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.Thread.sleep;
 
 public class Main {
+    final static int COUNT_TP = 4;
+
     public static void main(String[] args) {
 
         final ThreadGroup group = new ThreadGroup("GroupThreads");
-        MyThread myThread1 = new MyThread(group, "1");
-        MyThread myThread2 = new MyThread(group, "2");
-        MyThread myThread3 = new MyThread(group, "3");
-        MyThread myThread4 = new MyThread(group, "4");
+        List<MyThread> myThreads = new ArrayList<>();
+
+        for (int i = 0; i < COUNT_TP; i++) {
+            myThreads.add(new MyThread(group, Integer.toString(i + 1)));
+        }
 
         try {
             sleep(15000);
